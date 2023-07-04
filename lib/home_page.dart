@@ -1,6 +1,8 @@
 import 'package:andna/profile_body.dart';
+import 'package:andna/shopping_cart_body.dart';
 import 'package:andna/store_body.dart';
 import 'package:flutter/material.dart';
+import 'about_us_body.dart';
 import 'my_theme.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,7 +13,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int selectedIndex = 0 ;
+  int selectedIndex = 0;
+  String selectedProductsNumber = '0';
 
   @override
   Widget build(BuildContext context) {
@@ -20,33 +23,33 @@ class _HomePageState extends State<HomePage> {
       body: bodies[selectedIndex],
 
       ///BNB wrapped with Theme Widget because we want to change canvas color value in BNB only.
-      bottomNavigationBar:Theme(
+      bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
-      //canvasColor: MyTheme.lightPrimary,
-      //canvasColor: Theme.of(context).primaryColor,
-      canvasColor: MyTheme.mainColor,
-    ),
-      child: BottomNavigationBar(
-        backgroundColor: Colors.red,
+          //canvasColor: MyTheme.lightPrimary,
+          //canvasColor: Theme.of(context).primaryColor,
+          canvasColor: MyTheme.mainColor,
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.red,
           selectedItemColor: Colors.orange,
           unselectedItemColor: Colors.white,
           showUnselectedLabels: true,
+
           ///static index = 0
           currentIndex: selectedIndex,
+
           ///dynamic index...
-          onTap: (index){
+          onTap: (index) {
             /// selected index will be updated from here.
             selectedIndex = index;
-            setState(() {
-
-            });
+            setState(() {});
           },
-        /////////////////////////////////items of Bottom navigation Bar////////////////////////////////////////
+          /////////////////////////////////items of Bottom navigation Bar////////////////////////////////////////
           ///items of Bottom navigation Bar.
-          items: const [
+          items:  [
             ///icon_profile
             BottomNavigationBarItem(
-              icon:Icon(
+              icon: Icon(
                 Icons.person_2_rounded,
               ),
               label: 'Profile',
@@ -60,31 +63,39 @@ class _HomePageState extends State<HomePage> {
               label: 'Store',
             ),
 
-            ///icon_sebha
+            ///icon_andna
             BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage('assets/images/icon_sebha.png'),
+              icon: Container(
+                width: 45,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: ImageIcon(
+                  AssetImage('assets/images/logo_andna.png'),
+                ),
               ),
-              label: 'tasbeh',
+              label: 'about Us',
             ),
 
-            ///icon_radio
+            ///icon_cart
             BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage('assets/images/icon_radio.png'),
+              icon:Icon(
+                Icons.add_shopping_cart_outlined,
               ),
-              label: 'radio',
+              label: 'cart $selectedProductsNumber',
             ),
           ],
         ),
       ),
-      );
+    );
   }
+
   ///create list of bodies
   List<Widget> bodies = [
     ProfileBody(),
     StoreBody(),
+    AboutUsBody(),
+    ShoppingCartBody(),
   ];
 }
-
-

@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         DeliveryMan.routeName : (context)=>DeliveryMan(),
         AllOrders.routeName : (context)=> AllOrders(),
       },
-      initialRoute: Cpanel.routeName,
+      initialRoute: HomePage.routeName,
       theme: ThemeData.light(),
       themeMode: ThemeMode.light,
     );
