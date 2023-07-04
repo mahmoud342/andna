@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "348847563589",
+    "project_id": "andna-695b6",
+    "storage_bucket": "andna-695b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348847563589:android:9a6de8b60ea24929f0d42c",
+        "android_client_info": {
+          "package_name": "com.example.andna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "348847563589-smvo8ihdcefg9socje0nqp85mnt7mnqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxSvVh1ah_TZUUyeLeiXcmrCtZ8NgziPU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "348847563589-smvo8ihdcefg9socje0nqp85mnt7mnqi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
