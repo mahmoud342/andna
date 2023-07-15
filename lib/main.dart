@@ -1,4 +1,5 @@
 import 'package:andna/forget_pass.dart';
+import 'package:andna/product_details.dart';
 import 'package:andna/profile_body.dart';
 import 'package:andna/registration.dart';
 import 'package:andna/sign_up.dart';
@@ -33,11 +34,13 @@ class MyApp extends StatelessWidget {
         Registration.routeName: (context) => Registration(),
         ProfileBody.routeName: (context) => ProfileBody(),
         StoreBody.routeName: (context) => StoreBody(),
+        //ProductDetails.routeName:(context) => ProductDetails(),
         SignUp.routeName: (context) => SignUp(),
         ForgetPass.routeName: (context) => ForgetPass(),
         Cpanel.routeName: (context) => Cpanel(),
         DeliveryMan.routeName: (context) => DeliveryMan(),
         AllOrders.routeName: (context) => AllOrders(),
+
       },
       initialRoute: HomePage.routeName,
       theme: ThemeData.light(),

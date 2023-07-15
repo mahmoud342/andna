@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
-  String selectedProductsNumber = '0';
+  int selectedProductsNumber = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +47,6 @@ class _HomePageState extends State<HomePage> {
           /////////////////////////////////items of Bottom navigation Bar////////////////////////////////////////
           ///items of Bottom navigation Bar.
           items:  [
-            ///icon_profile
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person_2_rounded,
-              ),
-              label: 'Profile',
-            ),
 
             ///icon_products
             BottomNavigationBarItem(
@@ -61,6 +54,14 @@ class _HomePageState extends State<HomePage> {
                 Icons.storefront,
               ),
               label: 'Store',
+            ),
+
+            ///icon_profile
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person_2_rounded,
+              ),
+              label: 'Profile',
             ),
 
             ///icon_andna
@@ -93,8 +94,8 @@ class _HomePageState extends State<HomePage> {
 
   ///create list of bodies
   List<Widget> bodies = [
-    ProfileBody(),
     StoreBody(),
+    ProfileBody(),
     AboutUsBody(),
     ShoppingCartBody(),
   ];
