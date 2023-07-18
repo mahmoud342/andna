@@ -1,32 +1,20 @@
 import 'package:andna/product_details.dart';
 import 'package:andna/product_features.dart';
+import 'package:andna/provider/cart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'market_features.dart';
 import 'my_theme.dart';
 
-class StoreBody extends StatelessWidget {
+class StoreBody extends StatefulWidget {
   static const String routeName = 'store_body';
 
-  // /// list of products image
-  // List topOrdersProductsPhoto = [
-  //   NetworkImage(
-  //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU'),
-  //   NetworkImage(
-  //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU'),
-  //   NetworkImage(
-  //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU'),
-  //   NetworkImage(
-  //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU'),
-  // ];
-  //
-  // /// list of products name
-  // List topOrdersProductsname = [
-  //   'M&Ms',
-  //   'M&Ms',
-  //   'M&Ms',
-  //   'M&Ms',
-  // ];
+  @override
+  State<StoreBody> createState() => _StoreBodyState();
+}
+
+class _StoreBodyState extends State<StoreBody> {
   /// list of top orders products
   List<ProductFeatures> products = [
     ProductFeatures(
@@ -61,25 +49,6 @@ class StoreBody extends StatelessWidget {
     ),
   ];
 
-  // /// list of best markets image
-  // List bestMarketsImages = [
-  //   NetworkImage(
-  //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLo7VZUwuMHYQWrnS1UvBp2M4HsHDGTP-9Ww&usqp=CAU'),
-  //   NetworkImage(
-  //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLo7VZUwuMHYQWrnS1UvBp2M4HsHDGTP-9Ww&usqp=CAU'),
-  //   NetworkImage(
-  //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLo7VZUwuMHYQWrnS1UvBp2M4HsHDGTP-9Ww&usqp=CAU'),
-  //   NetworkImage(
-  //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLo7VZUwuMHYQWrnS1UvBp2M4HsHDGTP-9Ww&usqp=CAU'),
-  // ];
-  //
-  // /// list of best markets names
-  // List bestMarketsNames = [
-  //   'Fathala Market',
-  //   'Fathala Market',
-  //   'Fathala Market',
-  //   'Fathala Market',
-  // ];
   /// list of best markets
   List<MarketFeature> markets = [
     MarketFeature(
@@ -126,9 +95,11 @@ class StoreBody extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 30,
+                padding: EdgeInsetsDirectional.only(
+                  start: 20,
+                  end: 5,
+                  bottom: 30,
+                  top: 10,
                 ),
                 child: Column(
                   children: [
@@ -136,7 +107,7 @@ class StoreBody extends StatelessWidget {
                       height: 20,
                     ),
 
-                    ///circle avatar + welcome text + andna logo
+                    ///circle avatar + welcome text + andna logo + total price
                     Row(
                       //mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -169,10 +140,47 @@ class StoreBody extends StatelessWidget {
                         ),
 
                         ///andna logo////////////////////////////////////
-                        ImageIcon(
-                          AssetImage('assets/images/andna_logo_white.png'),
-                          size: 45,
-                          color: Colors.white,
+                        Column(
+                          children: [
+                            ImageIcon(
+                              AssetImage('assets/images/andna_logo_white.png'),
+                              size: 45,
+                              color: Colors.white,
+                            ),
+                            ///total price
+                            Container(
+                              padding: EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                  color: Colors.orange,
+                                  borderRadius: BorderRadius.circular(20)
+                              ),
+                              child: Consumer<Cart>(
+                                builder: ((context, cart, child){
+                                  return Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        'Total: ${cart.totalProductPrice} L.E',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                          shadows: [
+                                            Shadow(
+                                              blurRadius: 15, // shadow blur
+                                              color: Colors.grey, // shadow color
+                                              offset: Offset(1.0, 1.0), // how much shadow will be shown
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                }
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -211,17 +219,25 @@ class StoreBody extends StatelessWidget {
             ),
 
             ///Top Orders
-            Text(
-              'Top Orders',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-                shadows: [
-                  Shadow(
-                    blurRadius: 15, // shadow blur
-                    color: Colors.grey, // shadow color
-                    offset: Offset(1.0, 1.0), // how much shadow will be shown
+            Container(
+              color: Colors.red,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Top Orders',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 15, // shadow blur
+                          color: Colors.grey, // shadow color
+                          offset: Offset(1.0, 1.0), // how much shadow will be shown
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -245,16 +261,17 @@ class StoreBody extends StatelessWidget {
                     );
                   },
                   itemBuilder: (context, index) {
+                    ///clickable product
                     return GestureDetector(
                       onTap: (){
                         Navigator.push(
                             context,
                              MaterialPageRoute(builder: (context)=> ProductDetails(
-                               receivedProduct: products[index] ,
+                               receivedProduct: products[index],
                              ),
                              ),
-                            //if you do it via map via argument att.
-                            // arguments: will carry obj. from ProductFeature().//destination screen
+                            ///if you do it via map via argument att.
+                            /// arguments: will carry obj. from ProductFeature().//destination screen
                         );
                       },
                       child: Container(
@@ -307,17 +324,19 @@ class StoreBody extends StatelessWidget {
                             ///add,minus btn
                             Row(
                               children: [
-                                FloatingActionButton.small(
-                                  onPressed: () {},
-                                  child: Icon(Icons.remove),
-                                  backgroundColor: MyTheme.mainColor,
-                                ),
-                                FloatingActionButton.small(
-                                  onPressed: () {
-
-                                  },
-                                  child: Icon(Icons.add),
-                                  backgroundColor: MyTheme.mainColor,
+                                Consumer<Cart>(
+                                  ///cart is obj of Cart class.
+                                  builder: ((context , cart , child){
+                                    return  FloatingActionButton.small(
+                                      heroTag: '+',
+                                      onPressed: () {
+                                        ///products list is the list where you put the main products.
+                                        cart.addProduct(products[index]);
+                                      },
+                                      child: Icon(Icons.add),
+                                      backgroundColor: MyTheme.mainColor,
+                                    );
+                                  }),
                                 ),
                               ],
                             ),
@@ -326,7 +345,7 @@ class StoreBody extends StatelessWidget {
                       ),
                     );
                   },
-                  itemCount: 4,
+                  itemCount: products.length,
                 ),
               ),
             ),

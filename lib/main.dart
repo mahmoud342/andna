@@ -1,6 +1,7 @@
 import 'package:andna/forget_pass.dart';
 import 'package:andna/product_details.dart';
 import 'package:andna/profile_body.dart';
+import 'package:andna/provider/cart.dart';
 import 'package:andna/registration.dart';
 import 'package:andna/sign_up.dart';
 import 'package:andna/splash_screen.dart';
@@ -14,6 +15,9 @@ import 'c_panel.dart';
 import 'delivery_man.dart';
 import 'home_page.dart';
 
+import 'package:provider/provider.dart';
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -26,25 +30,31 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        SplashScreen.routeName: (context) => SplashScreen(),
-        HomePage.routeName: (context) => HomePage(),
-        Registration.routeName: (context) => Registration(),
-        ProfileBody.routeName: (context) => ProfileBody(),
-        StoreBody.routeName: (context) => StoreBody(),
-        //ProductDetails.routeName:(context) => ProductDetails(),
-        SignUp.routeName: (context) => SignUp(),
-        ForgetPass.routeName: (context) => ForgetPass(),
-        Cpanel.routeName: (context) => Cpanel(),
-        DeliveryMan.routeName: (context) => DeliveryMan(),
-        AllOrders.routeName: (context) => AllOrders(),
-
+    return ChangeNotifierProvider(
+      create: (context) {
+        ///return the class that contain the shared data .
+        return Cart();
       },
-      initialRoute: HomePage.routeName,
-      theme: ThemeData.light(),
-      themeMode: ThemeMode.light,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          SplashScreen.routeName: (context) => SplashScreen(),
+          HomePage.routeName: (context) => HomePage(),
+          Registration.routeName: (context) => Registration(),
+          ProfileBody.routeName: (context) => ProfileBody(),
+          StoreBody.routeName: (context) => StoreBody(),
+          //ProductDetails.routeName:(context) => ProductDetails(),
+          SignUp.routeName: (context) => SignUp(),
+          ForgetPass.routeName: (context) => ForgetPass(),
+          Cpanel.routeName: (context) => Cpanel(),
+          DeliveryMan.routeName: (context) => DeliveryMan(),
+          AllOrders.routeName: (context) => AllOrders(),
+
+        },
+        initialRoute: HomePage.routeName,
+        theme: ThemeData.light(),
+        themeMode: ThemeMode.light,
+      ),
     );
   }
 }

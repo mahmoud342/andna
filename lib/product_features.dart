@@ -5,5 +5,6 @@ class ProductFeatures{
   double productPrice;
   bool  newOldProduct;
   int starNum;
-  ProductFeatures({required this.productImg , required this.productName , required this.productPrice, required this.newOldProduct , this.starNum=3});
+  ProductFeatures({required this.productImg , required this.productName ,
+    required this.productPrice, required this.newOldProduct , this.starNum=3});
 }
