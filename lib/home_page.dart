@@ -4,7 +4,7 @@ import 'package:andna/store_body.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'about_us_body.dart';
-import 'my_theme.dart';
+import 'shared/my_theme.dart';
 import 'package:andna/provider/cart.dart';
 
 class HomePage extends StatefulWidget {

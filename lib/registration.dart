@@ -2,7 +2,7 @@ import 'package:andna/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'forget_pass.dart';
 import 'home_page.dart';
-import 'my_theme.dart';
+import 'shared/my_theme.dart';
 
 class Registration extends StatefulWidget {
   static const String routeName = 'registration';

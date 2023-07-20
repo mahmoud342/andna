@@ -4,8 +4,9 @@ import 'package:andna/provider/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui';
+import 'about_us_body.dart';
 import 'market_features.dart';
-import 'my_theme.dart';
+import 'shared/my_theme.dart';
 
 class StoreBody extends StatefulWidget {
   static const String routeName = 'store_body';
@@ -21,30 +22,35 @@ class _StoreBodyState extends State<StoreBody> {
         productImg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU',
         productName: 'M&Ms',
         productPrice: 20.5,
-      newOldProduct: true,
+        productDetails:'إم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موري إم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موري' ,
+        newOldProduct: true,
     ),
     ProductFeatures(
       productImg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU',
       productName: 'M&Ms',
       productPrice: 9,
+      productDetails:'إم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موري إم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موري' ,
       newOldProduct: false,
     ),
     ProductFeatures(
       productImg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU',
       productName: 'M&Ms',
       productPrice: 4,
+      productDetails:'إم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موريإم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موري ' ,
       newOldProduct: true,
     ),
     ProductFeatures(
       productImg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU',
       productName: 'M&Ms',
       productPrice: 29.5,
+      productDetails:'إم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موريإم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موريإم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موري ' ,
       newOldProduct: false,
     ),
     ProductFeatures(
       productImg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU',
       productName: 'M&Ms',
       productPrice: 40,
+      productDetails:'إم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موريإم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موري ' ,
       newOldProduct: true,
     ),
   ];
@@ -139,13 +145,19 @@ class _StoreBodyState extends State<StoreBody> {
                           ),
                         ),
 
-                        ///andna logo////////////////////////////////////
+                        ///andna logo + total price////////////////////////////////////
                         Column(
                           children: [
-                            ImageIcon(
-                              AssetImage('assets/images/andna_logo_white.png'),
-                              size: 45,
-                              color: Colors.white,
+                            ///andna logo
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.of(context).pushNamed(AboutUsBody.routeName);
+                              },
+                              child: ImageIcon(
+                                AssetImage('assets/images/andna_logo_white.png'),
+                                size: 45,
+                                color: Colors.white,
+                              ),
                             ),
                             ///total price
                             Container(
@@ -268,6 +280,7 @@ class _StoreBodyState extends State<StoreBody> {
                             context,
                              MaterialPageRoute(builder: (context)=> ProductDetails(
                                receivedProduct: products[index],
+                               index: index,
                              ),
                              ),
                             ///if you do it via map via argument att.
@@ -332,6 +345,7 @@ class _StoreBodyState extends State<StoreBody> {
                                       onPressed: () {
                                         ///products list is the list where you put the main products.
                                         cart.addProduct(products[index]);
+                                        print(cart.selectedProducts.length);
                                       },
                                       child: Icon(Icons.add),
                                       backgroundColor: MyTheme.mainColor,

@@ -1,7 +1,7 @@
-import 'package:andna/tff_widget.dart';
+import 'package:andna/shared/tff_widget.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
-import 'my_theme.dart';
+import 'shared/my_theme.dart';
 
 class DeliveryMan extends StatefulWidget {
   static const String routeName = 'delivery_man';

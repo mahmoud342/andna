@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import 'my_theme.dart';
+import 'shared/my_theme.dart';
 
 class ProfileBody extends StatelessWidget {
   static const String routeName = 'profile_body';

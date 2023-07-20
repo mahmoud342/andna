@@ -1,8 +1,10 @@
+import 'package:andna/about_us_body.dart';
 import 'package:andna/forget_pass.dart';
 import 'package:andna/product_details.dart';
 import 'package:andna/profile_body.dart';
 import 'package:andna/provider/cart.dart';
 import 'package:andna/registration.dart';
+import 'package:andna/shopping_cart_body.dart';
 import 'package:andna/sign_up.dart';
 import 'package:andna/splash_screen.dart';
 import 'package:andna/store_body.dart';
@@ -38,16 +40,20 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          SplashScreen.routeName: (context) => SplashScreen(),
-          HomePage.routeName: (context) => HomePage(),
           Registration.routeName: (context) => Registration(),
-          ProfileBody.routeName: (context) => ProfileBody(),
-          StoreBody.routeName: (context) => StoreBody(),
-          //ProductDetails.routeName:(context) => ProductDetails(),
           SignUp.routeName: (context) => SignUp(),
           ForgetPass.routeName: (context) => ForgetPass(),
+          SplashScreen.routeName: (context) => SplashScreen(),
+          HomePage.routeName: (context) => HomePage(),
+          StoreBody.routeName: (context) => StoreBody(),
+          ProfileBody.routeName: (context) => ProfileBody(),
+          AboutUsBody.routeName: (context) => AboutUsBody(),
+          ShoppingCartBody.routeName: (context) =>ShoppingCartBody(),
+          //ProductDetails.routeName:(context) => ProductDetails(),
           Cpanel.routeName: (context) => Cpanel(),
+          ///this screen that the admin can see all delivery mans and there status.
           DeliveryMan.routeName: (context) => DeliveryMan(),
+          ///this screen that the admin can see all orders of users.
           AllOrders.routeName: (context) => AllOrders(),
 
         },

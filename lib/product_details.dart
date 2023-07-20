@@ -1,18 +1,23 @@
+import 'package:andna/home_page.dart';
 import 'package:andna/provider/cart.dart';
-import 'package:andna/star_widget.dart';
+import 'package:andna/shared/shopping_cat_&_total_price_widget.dart';
+import 'package:andna/shared/star_widget.dart';
 import 'package:andna/product_features.dart';
+import 'package:andna/shopping_cart_body.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'my_theme.dart';
+import 'shared/my_theme.dart';
 
+///this screen view the details of selected product.
 class ProductDetails extends StatefulWidget {
   static const String routeName = 'product_details';
 
   ///we should receive a complete product(obj carry product feature) in var is called receivedProduct of type ProductFeature.
   ProductFeatures receivedProduct;
+  int index;
 
   ///receivedProduct carry list() that is exist in store_body screen that contain obj carry product feature.
-  ProductDetails({required this.receivedProduct});
+  ProductDetails({required this.receivedProduct , required this.index});
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -33,51 +38,15 @@ class _ProductDetailsState extends State<ProductDetails> {
           'Product Details',
         ),
         actions: [
-          Center(
-            child: Stack(
-              children: [
-                ///shopping cart icon
-                Icon(
-                  Icons.add_shopping_cart_outlined,
-                  size: 30,
-                ),
-
-                ///selected product items numbers
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: CircleAvatar(
-                    radius: 7,
-                    backgroundColor: Colors.green,
-                    ///consumer: listen to all changes that change in shared data file and rebuild the widget again.
-                    child: Consumer<Cart>(
-                      ///cart is obj of Cart class.
-                        builder:((context , cart , child){
-                          return  Text(
-                            '${cart.selectedProducts.length}',
-                              style: TextStyle(
-                                color: MyTheme.mainColor,
-                                fontSize: 10,
-                              ),
-                          );
-                        })
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          ///synchronized shopping cart
+          ShoppingCartAndTotalPriceWidget(isInDetailsScreen: true),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+
             ///product image
             Image(
               alignment: Alignment.center,
@@ -98,6 +67,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
             ///price
             Text(
+              ///reach by constructor
               '${widget.receivedProduct.productPrice} L.E',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -116,6 +86,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               child: Row(
                 children: [
+
                   ///new
                   Container(
                     padding: EdgeInsets.all(5),
@@ -172,9 +143,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 horizontal: 10,
               ),
               child: Text(
-                'إم آند إمزهي قطع حلوى على شكل أزرار صغيرة، تنتجها شركة مارس، وسُميت بهذا الاسم لإنه الحروف الأولى من أسماء السيد فورست مارس من شركة مارس، والسيد بروس موري '
-                'من شركة هيرشي للشيكولاتة، واللذان تعاونا في إنتاجها، وقطع الحلوى جميعها زينت بطباعة حرف إم صغير عليها وبداخلها أنواع مختلفة من الحشو، منها شيكولاتة الحليب، والشيكولاتة الغامقة، والكرسب، والشيكولاتة بالنعناع، وحبات اللوز،'
-                ' والشيكولاتة بالبرتقال، وجوز الهند، وقطع بسكويت البريتزل، والكرز البري، والقرفة، وتوت العليق، وزبد الفول السوداني. وتقع شركة إم آند إمز في الولايات المتحدة وتباع الآن في حوالي 100 دولة حول العالم، ولها ألوان مختلفة',
+                '${widget.receivedProduct.productDetails}',
                 maxLines: isShowMore ? 20 : 3,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
@@ -197,6 +166,35 @@ class _ProductDetailsState extends State<ProductDetails> {
                   color: Colors.blue,
                 ),
               ),
+            ),
+
+            Consumer<Cart>(
+                builder: (context, cart, child) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: MaterialButton(
+                        onPressed: (){
+                          ///received product is a complete product with(name , price , details , ....) is sent by constructor to details screen.
+                          cart.addProduct(widget.receivedProduct);
+                        },
+                      child: Text(
+                        '+ Add to cart',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      color: MyTheme.mainColor,
+                      textColor: Colors.white,
+                    ),
+                  );
+                },
+            ),
+
+            SizedBox(
+              height: 20,
             ),
           ],
         ),

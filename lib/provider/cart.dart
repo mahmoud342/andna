@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../product_features.dart';
 
+///this class is created to contain a shared data between screens.
 class Cart with ChangeNotifier{
   ///this data is the data we need to apply the change of it in any screen .
   List<ProductFeatures> selectedProducts=[];
@@ -19,7 +20,7 @@ class Cart with ChangeNotifier{
     //print('${selectedProducts.length}');
   }
 
-  ///remove product method
+  ///remove product method (this fn wait -receive- a complete product)
   removeProduct(ProductFeatures selectedProduct){
     ///remove product to new selected products list
     selectedProducts.remove(selectedProduct);

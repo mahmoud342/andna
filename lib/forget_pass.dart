@@ -1,7 +1,7 @@
 import 'package:andna/registration.dart';
-import 'package:andna/tff_widget.dart';
+import 'package:andna/shared/tff_widget.dart';
 import 'package:flutter/material.dart';
-import 'my_theme.dart';
+import 'shared/my_theme.dart';
 
 class ForgetPass extends StatefulWidget {
   static const String routeName = 'forget_pass';
