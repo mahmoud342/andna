@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'registration.dart';
+import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = 'splash_screen';
@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
     Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Registration())
+        MaterialPageRoute(builder: (context) => HomePage())
     );
   }
 

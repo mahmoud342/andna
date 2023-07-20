@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
           AllOrders.routeName: (context) => AllOrders(),
 
         },
-        initialRoute: HomePage.routeName,
+        initialRoute: SplashScreen.routeName,
         theme: ThemeData.light(),
         themeMode: ThemeMode.light,
       ),
