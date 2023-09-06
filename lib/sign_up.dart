@@ -17,6 +17,7 @@ class _SignUpState extends State<SignUp> {
   var lastNameController = TextEditingController();
   var emailController = TextEditingController();
   var userNameController = TextEditingController();
+  var phoneController = TextEditingController();
   var passController = TextEditingController();
 
   @override
@@ -53,7 +54,8 @@ class _SignUpState extends State<SignUp> {
 
                   ///tff first name
                   TffWidget(
-                      label: 'First Name',
+                    req: true,
+                    label: 'First Name',
                     hint: 'Please, Enter the first name.',
                     keyboardType: TextInputType.text,
                     controller: firstNameController,
@@ -80,6 +82,7 @@ class _SignUpState extends State<SignUp> {
 
                   ///tff last name
                   TffWidget(
+                    req: true,
                     label: 'Last Name',
                     hint: 'Please, Enter the Last name.',
                     keyboardType: TextInputType.text,
@@ -107,6 +110,7 @@ class _SignUpState extends State<SignUp> {
 
                   ///tff email
                   TffWidget(
+                    req: true,
                     label: 'email',
                     hint: 'Please, Enter your email.',
                     keyboardType: TextInputType.emailAddress,
@@ -134,6 +138,7 @@ class _SignUpState extends State<SignUp> {
 
                   ///tff user name
                   TffWidget(
+                    req: true,
                     label: 'user name',
                     hint: 'Please, Enter the user name.',
                     keyboardType: TextInputType.name,
@@ -159,8 +164,37 @@ class _SignUpState extends State<SignUp> {
                     height: 10,
                   ),
 
+                  ///tff phone
+                  TffWidget(
+                    req: true,
+                    label: 'phone number',
+                    hint: 'Please, Enter your phone number.',
+                    keyboardType: TextInputType.name,
+                    controller: phoneController,
+                    validator: (String? value) {
+                      if (value == null || value == '') {
+                        const snackBar = SnackBar(
+                          content: Text(
+                            'Please, Complete the required field!!!#######',
+                            style: TextStyle(
+                              color: MyTheme.mainColor,
+                              fontSize: 15,
+                            ),
+                          ),
+                          backgroundColor: Colors.white,
+                          duration: Duration(seconds: 3),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                    },
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+
                   ///tff pass
                   TffWidget(
+                    req: true,
                     label: 'password',
                     hint: 'Please, Enter the password.',
                     keyboardType: TextInputType.visiblePassword,

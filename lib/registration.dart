@@ -12,6 +12,8 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  var userNameController = TextEditingController();
+  var passController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +60,7 @@ class _RegistrationState extends State<Registration> {
                   ),
                   child: TextFormField(
                     keyboardType: TextInputType.text,
+                    controller: userNameController,
                     decoration: const InputDecoration(
                         // filled: true,
                         // fillColor: Colors.white,
@@ -135,6 +138,7 @@ class _RegistrationState extends State<Registration> {
                   child: TextFormField(
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
+                    controller: passController,
                     decoration: const InputDecoration(
 
                         // filled: true,

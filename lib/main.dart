@@ -1,7 +1,7 @@
 import 'package:andna/about_us_body.dart';
 import 'package:andna/forget_pass.dart';
-import 'package:andna/product_details.dart';
 import 'package:andna/profile_body.dart';
+import 'package:andna/profile_editing_screen.dart';
 import 'package:andna/provider/cart.dart';
 import 'package:andna/registration.dart';
 import 'package:andna/shopping_cart_body.dart';
@@ -11,7 +11,6 @@ import 'package:andna/store_body.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-
 import 'all_orders.dart';
 import 'c_panel.dart';
 import 'delivery_man.dart';
@@ -55,7 +54,8 @@ class MyApp extends StatelessWidget {
           DeliveryMan.routeName: (context) => DeliveryMan(),
           ///this screen that the admin can see all orders of users.
           AllOrders.routeName: (context) => AllOrders(),
-
+          ///this screen that you can edit the profile in it.
+          ProfileEditingScreen.routeName: (context) => ProfileEditingScreen(),
         },
         initialRoute: SplashScreen.routeName,
         theme: ThemeData.light(),

@@ -108,6 +108,7 @@ class _CpanelState extends State<Cpanel> {
                 ),
                 ///product name
                 TffWidget(
+                  req: true,
                   label: 'Product Name',
                   hint: 'Please, Enter product Name',
                   keyboardType: TextInputType.name,
@@ -128,6 +129,7 @@ class _CpanelState extends State<Cpanel> {
                 ///////////////////////////////////////////////////////////////////
                 ///product price
                 TffWidget(
+                  req: true,
                   label: 'Product Price',
                   hint: 'Please, Enter product Price',
                   keyboardType: TextInputType.number,

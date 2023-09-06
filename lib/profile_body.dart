@@ -1,212 +1,159 @@
+import 'package:andna/profile_editing_screen.dart';
+import 'package:andna/shared/profile_menu_widget.dart';
 import 'package:flutter/material.dart';
-import 'dart:ui';
 import 'shared/my_theme.dart';
 
-class ProfileBody extends StatelessWidget {
+class ProfileBody extends StatefulWidget {
   static const String routeName = 'profile_body';
-  // list of images
-  List topOrders =[
-    NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU'),
-    NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU'),
-    NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU'),
-    NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlE9JVYFC9ESdhjU4ZH0yQ3vl7JaFgUaCjsA&usqp=CAU'),
-  ];
 
-  List bestMarkets =[
-    NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLo7VZUwuMHYQWrnS1UvBp2M4HsHDGTP-9Ww&usqp=CAU'),
-    NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLo7VZUwuMHYQWrnS1UvBp2M4HsHDGTP-9Ww&usqp=CAU'),
-    NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLo7VZUwuMHYQWrnS1UvBp2M4HsHDGTP-9Ww&usqp=CAU'),
-    NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLo7VZUwuMHYQWrnS1UvBp2M4HsHDGTP-9Ww&usqp=CAU'),
-  ];
+  @override
+  State<ProfileBody> createState() => _ProfileBodyState();
+}
 
+class _ProfileBodyState extends State<ProfileBody> {
+  var firstName = TextEditingController();
+  var lastName = TextEditingController();
+  bool isEditIconClicked = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 25,
+      backgroundColor: Colors.transparent,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsetsDirectional.symmetric(
+            horizontal: 15,
           ),
-          ///first container
-          Container(
-            decoration: BoxDecoration(
-              color: MyTheme.mainColor,
-              borderRadius: BorderRadiusDirectional.only(
-                bottomEnd: Radius.circular(20),
-                bottomStart: Radius.circular(20),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 100,
               ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 30,
-              ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 20,
+              ///circle avatar profile photo + Edit icon
+              Stack(
+              children: [
+                CircleAvatar(
+                  radius: 100,
+                  backgroundImage: AssetImage(
+                    'assets/images/profile.png',
                   ),
-                  ///circle avatar + welcome text + andna logo
-                  Row(
-                    //mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ///profile avatar////////////////////////////////////
-                      CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/profile.png'),
-                      ),
-                      ///welcome text////////////////////////////////////
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'HI, Ahmed!',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
-                            ),
-                            Text(
-                              'Welcome to Andna app',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      ///andna logo////////////////////////////////////
-                      ImageIcon(
-                        AssetImage('assets/images/andna_logo_white.png'),
-                        size: 45,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  ///search bar
-                  TextFormField(
-                    style: TextStyle(
+                ),
+
+                Positioned(
+                  bottom: 0,
+                  right: 15,
+                  child: Container(
+                    padding:EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadiusDirectional.circular(30),
+                      color: Colors.red,
+                    ),
+                    child: Icon(
+                      Icons.edit,
                       color: Colors.white,
                     ),
-                    decoration: InputDecoration(
-                      prefixIcon:  Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color:Colors.white,
-                        ),
-                      ),
-                      hintText: 'Search for any thing...',
-                      hintStyle: TextStyle(
-                        color:Colors.grey,
-                      ),
+                  ),
+                ),
+              ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ///full name(icon + name)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    color: MyTheme.mainColor,
+                    Icons.account_circle,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                      'Ahmed abdulla',
+                    style: TextStyle(
+
+                      fontSize: 20,
+                      color: MyTheme.mainColor,
                     ),
+                  ),
+                  SizedBox(
+                    width: 10,
                   ),
                 ],
               ),
-            ),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          ///Top Orders
-          Text(
-            'Top Orders',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-              shadows: [
-                Shadow(
-                  blurRadius: 15,  // shadow blur
-                  color: Colors.grey, // shadow color
-                  offset: Offset(1.0,1.0), // how much shadow will be shown
-                ),
-              ],
-            ),
-          ),
-          ///listview of top orders
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsetsDirectional.only(
-                start: 15,
+              SizedBox(
+                height: 10,
               ),
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    width: 20,
-                  );
-                },
-                itemBuilder:(context , index){
-                  return Container(
-                    width: 150,
-                    height: 100,
-                    child:Image(
-                      image: topOrders[index],
+              ///Email(icon + Email)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    color: MyTheme.mainColor,
+                    Icons.email_rounded,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Ahmedabdulla@gmail.com',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: MyTheme.mainColor,
                     ),
-                  );
-                },
-                itemCount: 4,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                ],
               ),
-            ),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          ///Best markets
-          Text(
-            'Best Markets',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-              shadows: [
-                Shadow(
-                  blurRadius: 15,  // shadow blur
-                  color: Colors.grey, // shadow color
-                  offset: Offset(1.0,1.0), // how much shadow will be shown
+              SizedBox(
+                height: 20,
+              ),
+              ///Edit profile btn
+              ElevatedButton(
+                ///specific way to change color of elevated btn.
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
                 ),
-              ],
-            ),
-          ),
-          ///listview of best markets
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsetsDirectional.only(
-                start: 15,
-              ),
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    width: 20,
-                  );
-                },
-                itemBuilder:(context , index){
-                  return Container(
-                    width: 200,
-                    height: 200,
-                    child:Image(
-                      image: bestMarkets[index],
+                  onPressed: (){
+                  Navigator.of(context).pushNamed(ProfileEditingScreen.routeName);
+                  },
+                  child: Text(
+                    'Edit Profile',
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
-                  );
-                },
-                itemCount: 4,
+                  ),
               ),
-            ),
+              SizedBox(
+                height: 30,
+              ),
+              Divider(),
+              SizedBox(
+                height: 10,
+              ),
+              ///menu
+              Column(
+                children: [
+                  ///settings
+                  ProfileMenuWidget(
+                    menuIcon: Icons.settings_outlined,
+                    menuTitle: 'Settings',
+                  ),
+                  ///logout
+                  ProfileMenuWidget(
+                      menuTitle: 'Logout',
+                      menuIcon: Icons.exit_to_app_rounded
+                  ),
+                ],
+              ),
+
+            ],
           ),
-          ///btn navigation bar
-        ],
+        ),
       ),
     );
   }
-
 }

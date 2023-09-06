@@ -50,6 +50,7 @@ class _ForgetPassState extends State<ForgetPass> {
 ///////////////////////////////////////////////////////////////////
                 ///old pass tff
                 TffWidget(
+                  req: true,
                   label: 'old password',
                   hint: 'Please, Enter your old password' ,
                   keyboardType: TextInputType.visiblePassword,
@@ -58,7 +59,7 @@ class _ForgetPassState extends State<ForgetPass> {
                     if (value == null || value == '') {
                       const snackBar = SnackBar(
                         content: Text(
-                          'Please, Complete the required field!!!#######',
+                          'Please, Complete the required field!!!',
                           style: TextStyle(
                             color: MyTheme.mainColor,
                             fontSize: 15,
@@ -76,6 +77,8 @@ class _ForgetPassState extends State<ForgetPass> {
                 ),
                 ///new pass tff
                 TffWidget(
+                  ///required field
+                  req: true,
                   label: 'new password',
                   hint: 'Please, Enter the new password' ,
                   keyboardType: TextInputType.visiblePassword,
@@ -84,7 +87,7 @@ class _ForgetPassState extends State<ForgetPass> {
                     if (value == null || value == '') {
                       const snackBar = SnackBar(
                         content: Text(
-                          'Please, Complete the required field!!!#######',
+                          'Please, Complete the required field!!!',
                           style: TextStyle(
                             color: MyTheme.mainColor,
                             fontSize: 15,
@@ -107,6 +110,7 @@ class _ForgetPassState extends State<ForgetPass> {
                   hint: 'Please, Re-enter the new password' ,
                   keyboardType: TextInputType.visiblePassword,
                   controller: confirmNewPassController,
+                  req: true,
                   validator: (String? value) {
                     if (value == null || value == '') {
                       const snackBar = SnackBar(

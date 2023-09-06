@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'my_theme.dart';
 
 class TffWidget extends StatefulWidget {
+  bool req = true;
   String label = '';
   String hint = '';
   TextInputType keyboardType ;
@@ -10,7 +11,7 @@ class TffWidget extends StatefulWidget {
   var validator;
 
   TffWidget({required this.label , required this.hint , required this.keyboardType , required this.controller
-  ,required this.validator});
+  ,required this.validator , required this.req});
 
   @override
   State<TffWidget> createState() => _TffWidgetState();
@@ -64,39 +65,45 @@ class _TffWidgetState extends State<TffWidget> {
           //   }
           // },
           onFieldSubmitted: (value) {
-            if (value == null || value == '') {
-              const snackBar = SnackBar(
-                content: Text(
-                  'please, complete the required field !!!-on field submitted-',
-                  style: TextStyle(
-                    color: MyTheme.mainColor,
-                    fontSize: 15,
-                  ),
-                ),
-                backgroundColor: Colors.white,
-                duration: Duration(seconds: 5),
-              );
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              setState(() {});
-            }
+            if(widget.req==true)
+              {
+                if (value == null || value == '') {
+                  const snackBar = SnackBar(
+                    content: Text(
+                      'please, complete the required field !!!-on field submitted-',
+                      style: TextStyle(
+                        color: MyTheme.mainColor,
+                        fontSize: 15,
+                      ),
+                    ),
+                    backgroundColor: Colors.white,
+                    duration: Duration(seconds: 5),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  setState(() {});
+                }
+              }
           },
           onChanged: (value) {
-            if (value == null || value == '') {
-              const snackBar = SnackBar(
-                content: Text(
-                  'please, complete the required field !!!-on changed-',
-                  style: TextStyle(
-                    color: MyTheme.mainColor,
-                    fontSize: 15,
-                  ),
-                ),
-                backgroundColor: Colors.white,
-                duration: Duration(seconds: 5),
-              );
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            if(widget.req==true)
+              {
+                if (value == null || value == '') {
+                  const snackBar = SnackBar(
+                    content: Text(
+                      'please, complete the required field !!!-on changed-',
+                      style: TextStyle(
+                        color: MyTheme.mainColor,
+                        fontSize: 15,
+                      ),
+                    ),
+                    backgroundColor: Colors.white,
+                    duration: Duration(seconds: 5),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-              setState(() {});
-            }
+                  setState(() {});
+                }
+              }
           },
         ),
       ),
